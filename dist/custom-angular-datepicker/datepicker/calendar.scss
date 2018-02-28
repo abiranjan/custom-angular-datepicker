@@ -1,0 +1,172 @@
+@import '../core/style/vendor-prefixes';
+
+$primary: #106cc8 !default;
+$Custom-calendar-padding: 8px !default;
+$Custom-calendar-weekday-table-font-size: 11px !default;
+
+// Values chosen to approximate https://material.io/icons/#ic_navigate_before and
+// https://material.io/icons/#ic_navigate_next as closely as possible.
+$Custom-calendar-prev-next-icon-border-width: 2px;
+$Custom-calendar-prev-next-icon-margin: 15.5px;
+$Custom-calendar-prev-icon-transform: translateX(2px) rotate(-45deg);
+$Custom-calendar-next-icon-transform: translateX(-2px) rotate(45deg);
+
+.Custom-calendar {
+  @include user-select(none);
+  display: block;
+  outline: none;
+
+  &[mode='landscape'] {
+    display: flex;
+  }
+}
+
+.Custom-calendar-header {
+  padding: $Custom-calendar-padding * 2;
+  font-size: 14px;
+  background-color: $primary;
+  color: white;
+  box-sizing: border-box;
+
+  [mode='landscape'] & {
+    width: 150px;
+    min-width: 150px;
+  }
+}
+
+.Custom-calendar-header-year,
+.Custom-calendar-header-date-time {
+  width: 100%;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.Custom-calendar-header-date-time {
+  font-size: 30px;
+  line-height: 34px;
+
+  [mode='landscape'] & {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
+.Custom-calendar-header-year,
+.Custom-calendar-header-date,
+.Custom-calendar-header-hours,
+.Custom-calendar-header-minutes {
+  &:not(.active) {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+.Custom-calendar-header-time {
+  padding-left: 8px;
+
+  &:not(.active) {
+    opacity: 0.6;
+
+    .Custom-calendar-header-hours,
+    .Custom-calendar-header-minutes {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  [mode='landscape'] & {
+    display: block;
+    padding-left: 0;
+  }
+}
+
+.Custom-calendar-content {
+  width: 100%;
+  padding: 0 $Custom-calendar-padding $Custom-calendar-padding $Custom-calendar-padding;
+  outline: none;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  [mode='landscape'] & {
+    padding-top: $Custom-calendar-padding;
+  }
+}
+
+.Custom-calendar-controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Custom-calendar-period-button {
+  display: inline-block;
+  height: 48px;
+  padding: 12px;
+  outline: none;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.Custom-calendar-previous-button,
+.Custom-calendar-next-button {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  box-sizing: border-box;
+
+  &.disabled {
+    color: rgba(black, 0.38);
+    pointer-events: none;
+  }
+
+  svg {
+    fill: currentColor;
+    vertical-align: top;
+  }
+}
+
+.Custom-calendar-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.Custom-calendar-table-header {
+  color: rgba(black, 0.38);
+
+  th {
+    text-align: center;
+    font-size: $Custom-calendar-weekday-table-font-size;
+    padding: 0 0 $Custom-calendar-padding 0;
+  }
+}
+
+@media (min-width: 480px) {
+  .Custom-calendar[mode='auto'] {
+    display: flex;
+
+    .Custom-calendar-header {
+      width: 150px;
+      min-width: 150px;
+    }
+
+    .Custom-calendar-header-date-time {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    .Custom-calendar-header-time {
+      display: block;
+      padding-left: 0;
+    }
+
+    .Custom-calendar-content {
+      padding-top: $Custom-calendar-padding;
+    }
+  }
+}

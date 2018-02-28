@@ -1,0 +1,15 @@
+﻿<table class="Custom-calendar-table">
+  <thead class="Custom-calendar-table-header"></thead>
+  <tbody [@slideCalendar]="_calendarState"
+         (@slideCalendar.done)="_calendarStateDone()"
+         Custom-calendar-body
+         role="grid"
+         allowDisabledSelection="true"
+         [label]="_yearLabel"
+         [rows]="_months"
+         [todayValue]="_todayMonth"
+         [selectedValue]="_selectedMonth"
+         [labelMinRequiredCells]="2"
+         [activeCell]="_util.getMonth(activeDate)"
+         (selectedValueChange)="_monthSelected($event)"></tbody>
+</table>

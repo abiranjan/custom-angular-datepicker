@@ -1,0 +1,21 @@
+﻿<div class="Custom-clock">
+  <div class="Custom-clock-center"></div>
+  <div class="Custom-clock-hand" [ngStyle]="_hand"></div>
+  <div class="Custom-clock-hours" [class.active]="_hourView">
+    <div *ngFor="let item of _hours"
+         class="Custom-clock-cell"
+         [class.Custom-clock-cell-selected]="_selectedHour == item.value"
+         [class.Custom-clock-cell-disabled]="!item.enabled"
+         [style.top]="item.top+'%'"
+         [style.left]="item.left+'%'"
+         [style.fontSize]="item.fontSize">{{ item.displayValue }}</div>
+  </div>
+  <div class="Custom-clock-minutes" [class.active]="!_hourView">
+    <div *ngFor="let item of _minutes"
+         class="Custom-clock-cell"
+         [class.Custom-clock-cell-selected]="_selectedMinute == item.value"
+         [class.Custom-clock-cell-disabled]="!item.enabled"
+         [style.top]="item.top+'%'"
+         [style.left]="item.left+'%'">{{ item.displayValue }}</div>
+  </div>
+</div>

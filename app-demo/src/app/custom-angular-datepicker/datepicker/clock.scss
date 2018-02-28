@@ -1,0 +1,111 @@
+$primary: #106cc8 !default;
+$Custom-clock-min-size: 224px !default;
+$Custom-clock-margin: 8px !default;
+$Custom-clock-font-size: 14px !default;
+$Custom-clock-cell-size: 14.1666% !default;
+
+:host {
+  position: relative;
+  display: block;
+  min-width: $Custom-clock-min-size;
+  margin: $Custom-clock-margin;
+  font-size: $Custom-clock-font-size;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.Custom-clock {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  background-color: darken(white, 12);
+  border-radius: 50%;
+}
+
+.Custom-clock-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2%;
+  height: 2%;
+  margin: -1%;
+  border-radius: 50%;
+  background-color: $primary;
+}
+
+.Custom-clock-hand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  /*height: $Custom-clock-hand-size;*/
+  margin: 0 auto;
+  background-color: $primary;
+  transform-origin: bottom;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $primary;
+  }
+}
+
+.Custom-clock-hours,
+.Custom-clock-minutes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 350ms;
+  transform: scale(1.2);
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+}
+
+.Custom-clock-minutes {
+  transform: scale(0.8);
+}
+
+.Custom-clock-cell {
+  position: absolute;
+  display: flex;
+  width: $Custom-clock-cell-size;
+  height: $Custom-clock-cell-size;
+  color: rgba(black, 0.87);
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 50%;
+  align-items: center;
+  cursor: pointer;
+
+  &:not(.Custom-clock-cell-selected) {
+    &:not(.Custom-clock-cell-disabled):hover {
+      background-color: rgba(black, 0.1);
+    }
+  }
+
+  &.Custom-clock-cell-disabled {
+    color: rgba(black, 0.38);
+    pointer-events: none;
+  }
+
+  &.Custom-clock-cell-selected {
+    color: white;
+    background-color: lighten($primary, 5);
+  }
+}
